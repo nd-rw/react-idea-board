@@ -1,0 +1,53 @@
+<body>
+  <div id="root"></div>
+  <script src="https://unpkg.com/react@16.12.0/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@16.12.0/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
+  <style>
+    .postit {
+      border: 1px solid #333;
+      display: flex;
+      flex-direction: column;
+      background-color: lightyellow;
+      /*justify-content: center;*/
+      text-align: center;
+      margin: 2.5%
+    }
+    .postit--large {
+      width: 270px;
+      height: 270px;
+    }
+    .postit--medium {
+      width: 180px;
+      height: 180px;
+    }
+  </style>
+  <script type="text/babel">
+
+    function Postit({style, size, className = '', ...rest}) {
+      const sizeClassName = size ? `Postit--${size}` : ''
+      return (
+        <div
+          className={`Postit ${className} ${sizeClassName}`}
+          style={{fontStyle: 'italic', ...style}}
+          {...rest}
+        />
+      )
+    }
+
+    // TODO create fuction that takes array of strings of titles and creates <Postit> chunks.
+
+    const element = (
+      <div>
+        <Postit size="medium">
+          <h1>medium Postit</h1>
+        </Postit>
+        <Postit size="large">
+          <h1>large Postit</h1>
+        </Postit>
+      </div>
+    )
+
+    ReactDOM.render(element, document.getElementById('root'))
+  </script>
+</body>
